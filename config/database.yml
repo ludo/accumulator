@@ -1,0 +1,20 @@
+defaults: &defaults
+  adapter: mysql2
+  collation: utf8_general_ci
+  encoding: utf8
+  host: localhost
+  password: 
+  socket: <%= ["/tmp/mysqld.sock","/tmp/mysql.sock","/var/run/mysqld/mysqld.sock","/var/lib/mysql/mysql.sock"].detect{|socket| File.exist?(socket) }%>
+  username: root
+
+development:
+  database: accumulator_development
+  <<: *defaults
+
+test:
+  database: accumulator_test
+  <<: *defaults
+
+production:
+  database: accumulator_production
+  <<: *defaults
